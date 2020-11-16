@@ -23,10 +23,11 @@ elang.bernafas()
 
 // super constructor
 class Hewan3 {
-    nama : string;
-    kaki : number;
+    public nama : string;
+    private kaki : number;
+    protected mamalia : boolean;
     
-    constructor(nama : string, kaki : number){
+    constructor(nama : string, kaki : number, mamalia : boolean){
         this.nama = nama;
         this.kaki = kaki;
     }
@@ -35,13 +36,25 @@ class Hewan3 {
 // yg constructor pada parant terdapat param 
 class Katak extends Hewan3 {
     beracun : boolean;
-    constructor(nama : string, kaki : number, beracun : boolean) {
-        super(nama, kaki) // ini menjalankan constrctr pada parents
+    constructor(nama : string, kaki : number, mamalia : boolean, beracun : boolean) {
+        super(nama, kaki, mamalia) // ini menjalankan constrctr pada parents
         this.beracun = beracun
     } 
 }
 
-const amfibi = new Katak('fogy', 2, true);
+class Cat extends Hewan3 {
+    private paws : boolean
+    constructor(nama : string, kaki : number, mamalia : boolean, paws : boolean) {
+        super(nama, kaki, mamalia) // ini menjalankan constrctr pada parents
+    }
+
+    getCar () {
+        console.log(this.paws + this.nama)
+        // this.kaki --> kaki tidak bisa terpanggil 
+    }
+}
+
+const amfibi = new Katak('fogy', 2, false, true);
 console.log(amfibi) // Katak { nama: 'fogy', kaki: 4, beracun: true }
 
 
@@ -49,3 +62,7 @@ console.log(amfibi) // Katak { nama: 'fogy', kaki: 4, beracun: true }
 // inheritance pada class parents-child yang memiliki method yang sama
 // ketika di execute,terpaggil method pada class child
 
+// visibility
+// public = property yang bisa digunakan dimana saja
+// protected = yang bisa digunakan untuk class itu sendiri beserta keturunan nya
+// private = hanya digunakan di class itu sendiri
