@@ -66,3 +66,20 @@ class genClass<T> implements GenericsClass<T> {
 
 const GenericsClassA = new genClass<number>(123);
 console.log(GenericsClassA.methodA());
+
+/*Generic class 2 */
+
+class ClassA {
+    name : string = 'Class A';
+}
+
+class ClassBaru<T> {
+    classProps : T;
+    constructor(classProps : T) {
+        this.classProps = classProps;
+    }
+}
+
+const classA = new ClassA();
+const classBaru = new ClassBaru(ClassA); // tipe data class by generics
+
